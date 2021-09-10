@@ -3,6 +3,25 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow:  hidden;
+}
+
+#wrapper {
+  overflow:auto;
+  height:100vh;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  background-color:brown; 
+  width:100vw;   
+  height: 80px;
+  color: #ccc;
+  text-align: center; 
+ }
+
 /* Remove margins and padding from the list */
 ul {
   margin: 0;

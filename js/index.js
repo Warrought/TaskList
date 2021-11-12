@@ -3,6 +3,9 @@ const inputBox = document.querySelector(".inputField input");
 const addBtn = document.querySelector(".inputField button");
 const todoList = document.querySelector(".todoList");
 const deleteAllBtn = document.querySelector(".footer button");
+const form = document.getElementById("form");
+
+
 // onkeyup event
 inputBox.onkeyup = ()=>{
   let userEnteredValue = inputBox.value; //getting user entered value
@@ -12,8 +15,19 @@ inputBox.onkeyup = ()=>{
     addBtn.classList.remove("active"); //unactive the add button
   }
 }
+
+/*inputBox.addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    addBtn.click();
+  }
+});*/ 
 showTasks(); //calling showTask function
-addBtn.onclick = ()=>{ //when user click on plus icon button
+form.addEventListener("submit", (event) => { //when user click on plus icon button
+  event.preventDefault();
   let userEnteredValue = inputBox.value; //getting input field value
   let getLocalStorageData = localStorage.getItem("New Todo"); //getting localstorage
   if(getLocalStorageData == null){ //if localstorage has no data
@@ -25,7 +39,8 @@ addBtn.onclick = ()=>{ //when user click on plus icon button
   localStorage.setItem("New Todo", JSON.stringify(listArray)); //transforming js object into a json string
   showTasks(); //calling showTask function
   addBtn.classList.remove("active"); //unactive the add button once the task added
-}
+  todoList.scrollTop = todoList.scrollHeight - todoList.clientHeight;
+});
 function showTasks(){
   let getLocalStorageData = localStorage.getItem("New Todo");
   if(getLocalStorageData == null){
